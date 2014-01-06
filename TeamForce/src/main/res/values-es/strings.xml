@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TeamForce</string>
+    <string name="title_activity_browser">Descargas</string>
+    <string name="title_activity_about">Sobre Nosotros</string>
+
+    <string name="txtBienvenida">Bienvenido a la App Android de Team Force</string>
+
+</resources>
