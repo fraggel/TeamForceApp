@@ -17,16 +17,16 @@ public class DownloadReceiver extends BroadcastReceiver {
                 String action = intent.getAction();
                 if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
                     long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                    boolean b = App.listaDescargas.containsKey(String.valueOf(referenceId));
+                    boolean b = MainActivity.listaDescargas.containsKey(String.valueOf(referenceId));
                     if (b) {
-                        String nombre = App.listaDescargas.get(String.valueOf(referenceId));
+                        String nombre = MainActivity.listaDescargas.get(String.valueOf(referenceId));
                         Toast.makeText(context, nombre + " " + context.getResources().getString(R.string.msgTerminadaDescarga), Toast.LENGTH_SHORT).show();
                     }
-                    if (App.downloadREF == referenceId) {
-                        if (new File(Environment.getExternalStorageDirectory() + "/JIAYUES/APP/Jiayu.apk") != null) {
-                            if (new File(Environment.getExternalStorageDirectory() + "/JIAYUES/APP/Jiayu.apk").exists()) {
+                    if (MainActivity.downloadREF == referenceId) {
+                        if (new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForce.apk") != null) {
+                            if (new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForce.apk").exists()) {
                                 Intent intent2 = new Intent(Intent.ACTION_VIEW);
-                                intent2.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/JIAYUES/APP/Jiayu.apk")), "application/vnd.android.package-archive");
+                                intent2.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForce.apk")), "application/vnd.android.package-archive");
                                 intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // without this flag android returned a intent error!
                                 context.startActivity(intent2);
 

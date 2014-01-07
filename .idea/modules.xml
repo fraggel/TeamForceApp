@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TeamForce/TeamForce.iml" filepath="$PROJECT_DIR$/TeamForce/TeamForce.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TeamForceProject.iml" filepath="$PROJECT_DIR$/TeamForceProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TeamForceApp.iml" filepath="$PROJECT_DIR$/TeamForceApp.iml" />
     </modules>
   </component>
 </project>

@@ -2,10 +2,10 @@
 <resources>
 
     <string name="app_name">TeamForce</string>
-    <string name="title_activity_browser">Downloads</string>
-    <string name="title_activity_about">About</string>
+    <string name="title_activity_browser">Descargas</string>
+    <string name="title_activity_about">Sobre Nosotros</string>
 
-    <string name="txtBienvenida">Wellcome to Team Force Android App</string>
+    <string name="txtBienvenida">Bienvenido a la App Android de Team Force</string>
     <string name="msgGenericError">Error genérico</string>
     <string name="enviarEmailBtn">Enviar</string>
     <string name="msgSubjectInfo">Informacion TeamForce</string>

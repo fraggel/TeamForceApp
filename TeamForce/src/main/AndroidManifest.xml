@@ -28,6 +28,10 @@
             android:label="@string/title_activity_browser">
         </activity>
         <activity
+            android:name="es.fraggel.teamforce.ConfigActivity"
+            android:label="@string/title_activity_config">
+        </activity>
+        <activity
             android:name="es.fraggel.teamforce.AboutActivity"
             android:label="@string/title_activity_about">
         </activity>

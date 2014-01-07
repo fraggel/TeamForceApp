@@ -6,5 +6,54 @@
     <string name="title_activity_about">Sobre Nosotros</string>
 
     <string name="txtBienvenida">Bienvenido a la App Android de Team Force</string>
+    <string name="msgGenericError">Error genérico</string>
+    <string name="enviarEmailBtn">Enviar</string>
+    <string name="msgSubjectInfo">Informacion TeamForce</string>
+    <string name="visitarWebBtn">Visitar Web</string>
+    <string name="msgConfiguracion">Configuracion</string>
+    <string name="notificacionChk">Mostrar notificaciones</string>
+    <string name="msgTerminadaDescarga">Descarga terminada</string>
+    <string name="updateMnu">Buscar Actualización</string>
+    <string name="aboutMnu">Sobre nosotros</string>
+    <string name="configMnu">Configuración</string>
+    <string name="exitMnu">Salir</string>
+    <string name="cancelarBtn">Cancelar</string>
+    <string name="aceptarBtn">Aceptar</string>
+    <string name="msgLastVersion">Ya dispones de la ultima versión de la aplicación</string>
+    <string name="msgComprobarVersion">Nueva versión disponible</string>
+    <string name="msgPreguntaVersion">¿Descargar?</string>
+    <string name="msgIniciandoDescarga">Iniciando descarga</string>
+    <string name="btnSalir">Salir</string>
+    <string name="btnDescargas">Descargas</string>
+    <string name="foroBtn">Foro</string>
+    <string name="btnAbout">Sobre Nosotros</string>
+    <string name="btnConfiguracion">Configuración</string>
+    <string name="title_activity_config">Configuración</string>
 
+    <string-array name="languages">
+        <item>"Change Language"</item>
+        <item>"English"</item>
+        <item>"Español"</item>
+        <!--<item>"Catala"</item>
+        <item>"Français"</item>
+        <item>"Italiano"</item>
+        <item>"日本语"</item>
+        <item>"Portugues"</item>
+        <item>"Deutsch"</item>
+        <item>"русский"</item>
+        <item>"中国 语言"</item>-->
+    </string-array>
+    <string-array name="languages_values">
+        <item/>
+        <item>"en"</item>
+        <item>"es"</item>
+        <!--<item>"ca"</item>
+        <item>"fr"</item>
+        <item>"it"</item>
+        <item>"ja"</item>
+        <item>"pt"</item>
+        <item>"de"</item>
+        <item>"ru"</item>
+        <item>"zh"</item>-->
+    </string-array>
 </resources>

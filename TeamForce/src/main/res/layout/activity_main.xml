@@ -27,7 +27,18 @@
             android:background="@android:color/transparent"
             android:paddingBottom="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_horizontal_margin"/>
-
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
+            android:background="@android:color/background_dark"/>
         <TextView
             android:id="@+id/txtBienvenida"
             android:layout_width="fill_parent"
@@ -41,23 +52,40 @@
             android:password="false"/>
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/btnDescargas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="prueba"
+            android:text="@string/btnDescargas"
+            style="@style/ButtonTextRed"
+            android:background="@drawable/btn_red"/>
+        <Button
+            android:id="@+id/btnForo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/foroBtn"
+            style="@style/ButtonTextRed"
+            android:background="@drawable/btn_red"/>
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnAbout"
+            style="@style/ButtonTextRed"
+            android:background="@drawable/btn_red"/>
+        <Button
+            android:id="@+id/btnConfiguracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnConfiguracion"
             style="@style/ButtonTextGreen"
             android:background="@drawable/btn_red"/>
-        <WebView
-            android:id="@+id/webView"
+        <Button
+            android:id="@+id/btnSalir"
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="0dp"
-            android:padding="0dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:paddingTop="0dp"/>
+            android:layout_height="wrap_content"
+            android:text="@string/btnSalir"
+            style="@style/ButtonTextRed"
+            android:background="@drawable/btn_red"/>
         <TextView
             android:id="@+id/txtVersion"
             android:layout_width="fill_parent"

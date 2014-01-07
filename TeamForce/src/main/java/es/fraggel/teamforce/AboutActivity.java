@@ -14,7 +14,6 @@ public class AboutActivity extends Activity {
     Button contacto = null;
     Button visit = null;
     ImageButton imageButton = null;
-    ImageButton mapsButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +32,7 @@ public class AboutActivity extends Activity {
 
                 public void onClick(View arg0) {
 
-                    Uri uri = Uri.parse("http://www.jiayu.es");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }
-
-            });
-            mapsButton = (ImageButton) findViewById(R.id.imageButton2);
-            mapsButton.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View arg0) {
-                    Uri uri = Uri.parse("https://maps.google.es/maps?q=Passatge+d'%C3%80ngels+i+Federic,+2,+46022+Valencia,+Comunidad+Valenciana&hl=es&ie=UTF8&geocode=FWkyWgIdztL6_w&split=0&hq=&hnear=Passatge+d'%C3%80ngels+i+Federic,+2,+46022+Valencia&ll=39.465769,-0.339031&spn=0.005069,0.00721&t=m&z=17&vpsrc=6&iwloc=A");
+                    Uri uri = Uri.parse("http://www.androidteamforce.es");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
@@ -55,7 +44,7 @@ public class AboutActivity extends Activity {
 
                 public void onClick(View arg0) {
                     try {
-                        Uri uri = Uri.parse("http://www.jiayu.es/");
+                        Uri uri = Uri.parse("http://www.androidteamforce.es/");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                     } catch (Exception e) {
@@ -72,7 +61,7 @@ public class AboutActivity extends Activity {
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL,
-                            new String[]{"info@jiayu.es"});
+                            new String[]{"jiayuteamforce@gmail.com"});
                     i.putExtra(Intent.EXTRA_SUBJECT, res2.getString(R.string.msgSubjectInfo));
                     i.putExtra(Intent.EXTRA_TEXT, "");
                     try {

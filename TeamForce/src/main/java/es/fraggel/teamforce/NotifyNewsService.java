@@ -1,18 +1,8 @@
 package es.fraggel.teamforce;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.IBinder;
-import android.widget.Toast;
-
-import java.util.Calendar;
 
 /**
  * Created by Fraggel on 10/08/13.
@@ -36,7 +26,7 @@ public class NotifyNewsService extends Service implements AsyncResponse {
     public int onStartCommand(Intent intent, int flags, int startId) {
         /*try {
             nversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            ajustes=getSharedPreferences("JiayuesAjustes",Context.MODE_PRIVATE);
+            ajustes=getSharedPreferences("TeamForceAjustes",Context.MODE_PRIVATE);
             modelo=ajustes.getString("modelo","");
             VersionThread asyncTask = new VersionThread();
             asyncTask.delegate = this;

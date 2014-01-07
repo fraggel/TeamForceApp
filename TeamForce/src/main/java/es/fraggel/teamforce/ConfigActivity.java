@@ -25,13 +25,13 @@ public class ConfigActivity extends Activity implements CompoundButton.OnChecked
         super.onCreate(savedInstanceState);
         Resources res = this.getResources();
         setContentView(R.layout.activity_config);
-        ajustes=getSharedPreferences("JiayuesAjustes", Context.MODE_PRIVATE);
+        ajustes=getSharedPreferences("TeamForceAjustes", Context.MODE_PRIVATE);
         imageButton = (ImageButton) findViewById(R.id.imageButton1);
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
 
-                Uri uri = Uri.parse("http://www.jiayu.es");
+                Uri uri = Uri.parse("http://www.androidteamforce.es");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
