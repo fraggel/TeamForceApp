@@ -44,7 +44,7 @@ public class AboutActivity extends Activity {
 
                 public void onClick(View arg0) {
                     try {
-                        
+
                         Uri uri = Uri.parse("http://www.androidteamforce.es/");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
