@@ -72,7 +72,7 @@ public class BrowserActivity extends Activity {
 
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             urlDestino = url;
-            if (urlDestino.lastIndexOf("/desarrollo/") != -1) {
+            if (urlDestino.lastIndexOf("/desarrollo/") != -1 && urlDestino.lastIndexOf("appsoft") == -1) {
                 try {
                     String nombreFichero = "";
                     nombreFichero = urlDestino.split("/")[urlDestino.split("/").length - 1];
@@ -122,7 +122,9 @@ public class BrowserActivity extends Activity {
                     //Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
                 }
                 return true;
-            } else {
+            } else if(urlDestino.lastIndexOf("appsoft") != -1){
+                return false;
+            }else{
                 Uri uri = Uri.parse(urlDestino);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
@@ -160,5 +162,21 @@ public class BrowserActivity extends Activity {
         }
         fecha_mod=(day+"/"+month+"/"+year);
         return fecha_mod;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (urlDestino.lastIndexOf("appsoftdetails") != -1) {
+            WebView descargas = (WebView) findViewById(R.id.webView1);
+            descargas.setWebViewClient(new TeamForceWebViewClient());
+            descargas.setDownloadListener(new TeamForceDownloadListener());
+            isDownloadManagerAvailable(getBaseContext());
+            Intent intent = getIntent();
+            String modelo = intent.getExtras().getString("modelo");
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo);
+            urlDestino="http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo;
+        }else{
+            super.onBackPressed();
+        }
     }
 }

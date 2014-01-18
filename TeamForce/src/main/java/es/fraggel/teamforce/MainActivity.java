@@ -40,7 +40,6 @@ public class MainActivity extends Activity implements AsyncResponse {
     ImageButton imglogo;
     TextView txtVersion;
     Button descargas;
-    Button foro;
     Button about;
     Button config;
     Button salir;
@@ -127,6 +126,11 @@ public class MainActivity extends Activity implements AsyncResponse {
                 descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appbanner.php");
             }
             addListenerOnButton();
+            if(noInternet){
+                descargas.setEnabled(false);
+            }else{
+                descargas.setEnabled(true);
+            }
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
         }
@@ -195,16 +199,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 
             });
 
-            foro = (Button) findViewById(R.id.btnForo);
-            foro.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View arg0) {
-                    Uri uri = Uri.parse("http://www.htcmania.com/showthread.php?t=707720");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }
-
-            });
             config = (Button) findViewById(R.id.btnConfiguracion);
             config.setOnClickListener(new View.OnClickListener() {
 

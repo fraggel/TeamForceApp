@@ -45,13 +45,7 @@
             android:text="@string/btnDescargas"
             style="@style/ButtonTextRed"
             android:background="@drawable/btn_red"/>
-        <Button
-            android:id="@+id/btnForo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/foroBtn"
-            style="@style/ButtonTextRed"
-            android:background="@drawable/btn_red"/>
+
         <Button
             android:id="@+id/btnAbout"
             android:layout_width="match_parent"
