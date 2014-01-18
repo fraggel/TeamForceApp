@@ -2,12 +2,14 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:scrollbars="horizontal"
-            android:layout_weight="20">
+            android:layout_weight="20"
+            android:background="@android:color/black">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:background="@android:color/black"
         >
         <ImageButton
                 android:id="@+id/imageButton1"
@@ -24,21 +26,33 @@
                 android:paddingBottom="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_horizontal_margin"/>
 
+        <TextView
+            android:id="@+id/txtBienvenida"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="@string/txtAboutUs"
+            style="@style/LabelTextWhite"
+            android:background="@drawable/btn_black"
+            android:visibility="visible"
+            android:password="false"/>
+
         <Button
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/enviarEmailBtn"
-                style="@style/ButtonTextGreen"
-                android:background="@drawable/btn_green"/>
+                style="@style/ButtonTextRed"
+                android:background="@drawable/btn_red"/>
 
         <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/visitarWebBtn"
-                android:background="@drawable/btn_green"
-                style="@style/ButtonTextGreen"/>
+                android:background="@drawable/btn_red"
+                style="@style/ButtonTextRed"/>
 
     </LinearLayout>
 </ScrollView>

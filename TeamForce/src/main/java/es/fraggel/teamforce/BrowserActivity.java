@@ -114,7 +114,7 @@ public class BrowserActivity extends Activity {
 
                     DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                     //Toast.makeText(getBaseContext(), getResources().getString(R.string.msgIniciandoDescarga) + " " + nombreFichero, Toast.LENGTH_SHORT).show();
-                    MainActivity.listaDescargas.put(String.valueOf(manager.enqueue(request)), nombreFichero);
+                    AppActivity.listaDescargas.put(String.valueOf(manager.enqueue(request)), nombreFichero);
 
                     //manager.enqueue(request);
 

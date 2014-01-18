@@ -17,12 +17,12 @@ public class DownloadReceiver extends BroadcastReceiver {
                 String action = intent.getAction();
                 if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
                     long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                    boolean b = MainActivity.listaDescargas.containsKey(String.valueOf(referenceId));
+                    boolean b = AppActivity.listaDescargas.containsKey(String.valueOf(referenceId));
                     if (b) {
-                        String nombre = MainActivity.listaDescargas.get(String.valueOf(referenceId));
+                        String nombre = AppActivity.listaDescargas.get(String.valueOf(referenceId));
                         Toast.makeText(context, nombre + " " + context.getResources().getString(R.string.msgTerminadaDescarga), Toast.LENGTH_SHORT).show();
                     }
-                    if (MainActivity.downloadREF == referenceId) {
+                    if (AppActivity.downloadREF == referenceId) {
                         if (new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForce.apk") != null) {
                             if (new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForce.apk").exists()) {
                                 Intent intent2 = new Intent(Intent.ACTION_VIEW);

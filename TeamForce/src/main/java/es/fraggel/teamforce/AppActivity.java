@@ -31,7 +31,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class MainActivity extends Activity implements AsyncResponse {
+public class AppActivity extends Activity implements AsyncResponse {
 
     static long downloadREF = -1;
     static HashMap<String, String> listaDescargas = new HashMap<String, String>();
@@ -113,6 +113,7 @@ public class MainActivity extends Activity implements AsyncResponse {
             }
             if(noInternet){
                 setContentView(R.layout.activity_main_offline);
+                Toast.makeText(getBaseContext(),getResources().getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
             }else{
                 setContentView(R.layout.activity_main);
             }
@@ -186,12 +187,12 @@ public class MainActivity extends Activity implements AsyncResponse {
                     try {
                         /*Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                         startActivity(intent);*/
-                        if(noInternet){
+                        /*if(noInternet){*/
                             Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                             startActivity(intent);
-                        }else{
+                        /*}else{
                             openBrowser(arg0, "about");
-                        }
+                        }*/
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.msgGenericError)+" 108", Toast.LENGTH_SHORT).show();
                     }
@@ -315,7 +316,7 @@ public class MainActivity extends Activity implements AsyncResponse {
                                 res.getString(R.string.cancelarBtn),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int witch) {
-                                        MainActivity.updatemostrado=false;
+                                        AppActivity.updatemostrado=false;
                                     }
                                 });
                         dialog.setButton(AlertDialog.BUTTON_POSITIVE,
@@ -323,7 +324,7 @@ public class MainActivity extends Activity implements AsyncResponse {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int witch) {
                                         try {
-                                            MainActivity.updatemostrado=false;
+                                            AppActivity.updatemostrado=false;
                                             ActualizarVersion();
                                         } catch (Exception e) {
                                             Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();

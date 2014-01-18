@@ -7,7 +7,7 @@
 
     <string name="txtBienvenida">Bienvenido a la App Android de Team Force</string>
     <string name="msgGenericError">Error genérico</string>
-    <string name="enviarEmailBtn">Enviar</string>
+    <string name="enviarEmailBtn">Enviar email</string>
     <string name="msgSubjectInfo">Informacion TeamForce</string>
     <string name="visitarWebBtn">Visitar Web</string>
     <string name="msgConfiguracion">Configuracion</string>
@@ -29,9 +29,10 @@
     <string name="btnAbout">Sobre Nosotros</string>
     <string name="btnConfiguracion">Configuración</string>
     <string name="title_activity_config">Configuración</string>
-
+    <string name="noInternet">No existe conexión a internet, algunas opciones se deshabilitarán, es necesario reabrir la aplicación tras habilitar los Datos o WiFi para habilitar las opciones deshabilitadas</string>
+    <string name="txtAboutUs">Jiayu Team Force, somos un grupo de propietarios de Jiayus que se han unido para hacer todo lo que podamos para crear y mejorar las roms para nuestros queridos Jiayu</string>
     <string-array name="languages">
-        <item>"Change Language"</item>
+        <item>"Cambiar idioma"</item>
         <item>"English"</item>
         <item>"Español"</item>
         <!--<item>"Catala"</item>
