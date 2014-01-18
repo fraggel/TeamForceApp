@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+
 public class AboutActivity extends Activity {
     Button contacto = null;
     Button visit = null;

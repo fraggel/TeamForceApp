@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -47,6 +51,7 @@ public class MainActivity extends Activity implements AsyncResponse {
     String compilacion = "";
     String newversion = "";
     boolean noInternet=false;
+    boolean yaPase=false;
     public static boolean updatemostrado=false;
     static NotificationManager mNotificationManagerUpdate=null;
     static NotificationManager mNotificationManagerNews=null;
@@ -66,7 +71,7 @@ public class MainActivity extends Activity implements AsyncResponse {
             locale = new Locale(listaIdiomas[i]);
         }
 
-
+        updatemostrado=false;
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -75,8 +80,10 @@ public class MainActivity extends Activity implements AsyncResponse {
         onCreate(null);
 
     }
+
     protected void onCreate(Bundle savedInstanceState) {
         try {
+            updatemostrado=false;
             super.onCreate(savedInstanceState);
             nversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             mNotificationManagerUpdate = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -94,8 +101,7 @@ public class MainActivity extends Activity implements AsyncResponse {
                 editorAjustes.putString("fechaUltimoAccesoDescargas", asignaFecha());
                 editorAjustes.commit();
             }
-            version = "TeamForce ";
-            version = version + nversion;
+            noInternet=comprobarConexion();
 
             comprobarVersionInicio(version);
             File f1 = new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/");
@@ -106,13 +112,39 @@ public class MainActivity extends Activity implements AsyncResponse {
             if (!f2.exists()) {
                 f2.mkdirs();
             }
-            setContentView(R.layout.activity_main);
+            if(noInternet){
+                setContentView(R.layout.activity_main_offline);
+            }else{
+                setContentView(R.layout.activity_main);
+            }
+
             txtVersion=(TextView)findViewById(R.id.txtVersion);
             txtVersion.setText(getResources().getString(R.string.app_name)+" "+nversion);
+            if(!noInternet){
+                WebView descargas = (WebView) findViewById(R.id.webView);
+                WebSettings webSettings = descargas.getSettings();
+                webSettings.setJavaScriptEnabled(true);
+                descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appbanner.php");
+            }
             addListenerOnButton();
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
         }
+    }
+    private boolean comprobarConexion() {
+        boolean nohayinternet=false;
+        ConnectivityManager cn=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nf=cn.getActiveNetworkInfo();
+        if(nf != null && nf.isConnected()==true )
+        {
+            nohayinternet=false;
+
+        }
+        else
+        {
+            nohayinternet=true;
+        }
+        return nohayinternet;
     }
     private void comprobarVersionInicio(String version2) {
         try {
@@ -167,7 +199,7 @@ public class MainActivity extends Activity implements AsyncResponse {
             foro.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View arg0) {
-                    Uri uri = Uri.parse("http://www.androidteamforce.es/forum.php");
+                    Uri uri = Uri.parse("http://www.htcmania.com/showthread.php?t=707720");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
@@ -195,17 +227,19 @@ public class MainActivity extends Activity implements AsyncResponse {
                 }
 
             });
-            imglogo=(ImageButton)findViewById(R.id.imgLogo);
-            imglogo.setOnClickListener(new View.OnClickListener() {
+            if(noInternet){
+                imglogo=(ImageButton)findViewById(R.id.imgLogo);
+                imglogo.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View arg0) {
+                    public void onClick(View arg0) {
 
-                    Uri uri = Uri.parse("http://www.androidteamforce.es");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }
+                        Uri uri = Uri.parse("http://www.androidteamforce.es");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
 
-            });
+                });
+            }
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.msgGenericError)+" 111", Toast.LENGTH_SHORT).show();
         }
@@ -238,7 +272,14 @@ public class MainActivity extends Activity implements AsyncResponse {
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                 if (".apk".equals(nombreFichero.substring(nombreFichero.length() - 4, nombreFichero.length()).toLowerCase())) {
                     request.setMimeType("application/vnd.android.package-archive");
-                    new File(Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/TeamForceApp.apk").delete();
+                    File ffff=new File((Environment.getExternalStorageDirectory() + "/TEAMFORCE/APP/"));
+                    File[] fDir=ffff.listFiles();
+                    for(int x=0;x<fDir.length;x++){
+                        File tmp=fDir[x];
+                        if(tmp.getName().indexOf("TeamForce")!=-1){
+                            tmp.delete();
+                        }
+                    }
                 }
 
             }
@@ -265,68 +306,70 @@ public class MainActivity extends Activity implements AsyncResponse {
         try {
             if (output != null && !"TIMEOUT----".equals(output)) {
                 if(!updatemostrado){
-                String inicio = output.split("-;-")[0];
-                output = output.split("-;-")[1];
-                String[] split = output.split("----");
-                newversion = split[0].split(" ")[1];
-                urlActualizacion = split[1];
-                if (!"".equals(urlActualizacion) && !nversion.equals(newversion) && (Float.parseFloat(nversion.replaceAll("TeamForce ", "")) < Float.parseFloat(newversion.replaceAll("TeamForce ", "")))) {
-                    updatemostrado=true;
-                    Resources res = this.getResources();
-                    AlertDialog dialog = new AlertDialog.Builder(this).create();
-                    dialog.setMessage(res.getString(R.string.msgComprobarVersion) + " " + nversion + "->" + newversion + " " + res.getString(R.string.msgPreguntaVersion));
-                    dialog.setButton(AlertDialog.BUTTON_NEGATIVE,
-                            res.getString(R.string.cancelarBtn),
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int witch) {
-                                    MainActivity.updatemostrado=false;
-                                }
-                            });
-                    dialog.setButton(AlertDialog.BUTTON_POSITIVE,
-                            res.getString(R.string.aceptarBtn),
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int witch) {
-                                    try {
-                                        MainActivity.updatemostrado=false;
-                                        ActualizarVersion();
-                                    } catch (Exception e) {
-                                        Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                    dialog.show();
-                } else {
-                    if ("".equals(inicio)) {
+                    String inicio = output.split("-;-")[0];
+                    output = output.split("-;-")[1];
+                    String[] split = output.split("----");
+                    newversion = split[0].split(" ")[1];
+                    urlActualizacion = split[1];
+                    if (!"".equals(urlActualizacion) && !nversion.equals(newversion) && (Float.parseFloat(nversion.replaceAll("TeamForce ", "")) < Float.parseFloat(newversion.replaceAll("TeamForce ", "")))) {
+                        updatemostrado=true;
                         Resources res = this.getResources();
                         AlertDialog dialog = new AlertDialog.Builder(this).create();
-                        dialog.setMessage(res.getString(R.string.msgLastVersion));
+                        dialog.setMessage(res.getString(R.string.msgComprobarVersion) + " " + nversion + "->" + newversion + " " + res.getString(R.string.msgPreguntaVersion));
+                        dialog.setButton(AlertDialog.BUTTON_NEGATIVE,
+                                res.getString(R.string.cancelarBtn),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int witch) {
+                                        MainActivity.updatemostrado=false;
+                                    }
+                                });
                         dialog.setButton(AlertDialog.BUTTON_POSITIVE,
                                 res.getString(R.string.aceptarBtn),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int witch) {
+                                        try {
+                                            MainActivity.updatemostrado=false;
+                                            ActualizarVersion();
+                                        } catch (Exception e) {
+                                            Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 });
                         dialog.show();
-                    }
-                    if((split.length-2)>0){
-                        String fecha=null;
-                        String model=null;
-                        boolean modeloEncontrado=false;
-                        for (int x =2;x<split.length;x++){
-                            model=split[x].split("->")[0];
-                            fecha=split[x].split("->")[1];
-                            if(modelo.equals(model)){
-                                modeloEncontrado=true;
-                                break;
-                            }
+                    } else {
+                        if ("".equals(inicio)) {
+                            Resources res = this.getResources();
+                            AlertDialog dialog = new AlertDialog.Builder(this).create();
+                            dialog.setMessage(res.getString(R.string.msgLastVersion));
+                            dialog.setButton(AlertDialog.BUTTON_POSITIVE,
+                                    res.getString(R.string.aceptarBtn),
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int witch) {
+                                        }
+                                    });
+                            dialog.show();
                         }
+                        if((split.length-2)>0){
+                            String fecha=null;
+                            String model=null;
+                            boolean modeloEncontrado=false;
+                            for (int x =2;x<split.length;x++){
+                                model=split[x].split("->")[0];
+                                fecha=split[x].split("->")[1];
+                                if(modelo.equals(model)){
+                                    modeloEncontrado=true;
+                                    break;
+                                }
+                            }
 
+                        }
                     }
                 }
             }
-            }
+            //noInternet=false;
         } catch (Exception e) {
-            Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
+            //noInternet=true;
+            //Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
         }
     }
 

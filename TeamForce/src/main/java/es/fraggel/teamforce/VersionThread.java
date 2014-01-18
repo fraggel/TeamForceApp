@@ -18,7 +18,7 @@ public class VersionThread extends AsyncTask<String, Void, String> {
         InputStreamReader isr = null;
         BufferedReader in = null;
         try {
-            URL jsonUrl = new URL("http://www.androidteamforce.es/teamforceapkversion.asd");
+            URL jsonUrl = new URL("http://www.androidteamforce.es/desarrollo/teamforceapkversion.asd");
             in = new BufferedReader(new InputStreamReader(jsonUrl.openStream()));
             result = in.readLine();
             urlActualizacion = in.readLine();

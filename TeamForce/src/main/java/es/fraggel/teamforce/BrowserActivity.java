@@ -46,7 +46,7 @@ public class BrowserActivity extends Activity {
         descargas.setDownloadListener(new TeamForceDownloadListener());
 
         if ("drivers".equals(tipo)) {
-            descargas.loadUrl("http://www.androidteamforce.es/soporte/apptools.php");
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/apptools.php");
         }else if ("downloads".equals(tipo)) {
             mNotificationManagerNews = (NotificationManager)getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
             mNotificationManagerNews.cancel(SIMPLE_NOTFICATION_NEWS);
@@ -55,7 +55,7 @@ public class BrowserActivity extends Activity {
             editorAjustes.putString("modelo", modelo);
             editorAjustes.putString("fechaUltimoAccesoDescargas", asignaFecha());
             editorAjustes.commit();
-            descargas.loadUrl("http://www.androidteamforce.es/soporte/appsoft.php?modelo=" + modelo);
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo);
         }
 
     }

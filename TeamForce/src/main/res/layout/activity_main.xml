@@ -14,19 +14,6 @@
         tools:context=".MainActivity"
         tools:ignore="MergeRootFrame" >
 
-        <ImageButton
-            android:id="@+id/imgLogo"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:src="@drawable/teamlogic"
-            android:contentDescription="Android Team Force"
-            android:clickable="false"
-            android:focusable="false"
-            android:adjustViewBounds="false"
-            android:background="@android:color/transparent"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"/>
         <WebView
             android:id="@+id/webView"
             android:layout_width="fill_parent"
@@ -38,7 +25,7 @@
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:paddingTop="0dp"
-            android:background="@android:color/background_dark"/>
+            android:background="@android:color/black"/>
         <TextView
             android:id="@+id/txtBienvenida"
             android:layout_width="fill_parent"

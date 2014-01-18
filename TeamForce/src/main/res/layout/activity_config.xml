@@ -1,13 +1,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:scrollbars="horizontal"
-            android:layout_weight="20">
+            android:layout_weight="20"
+            android:background="@android:color/black">
 
     <LinearLayout
             android:id="@+id/LinearLayout1"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".Config"
@@ -44,7 +45,7 @@
                 android:text="@string/notificacionChk"
                 android:id="@+id/notificacionChk"
                 android:checked="false"
-                style="@style/LabelTextBlack"/>
+                style="@style/LabelTextWhite"/>
     </LinearLayout>
 
 </ScrollView>
