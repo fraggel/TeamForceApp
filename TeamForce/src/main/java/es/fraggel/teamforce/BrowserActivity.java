@@ -30,6 +30,7 @@ public class BrowserActivity extends Activity {
     private int SIMPLE_NOTFICATION_UPDATE=8888;
     private int SIMPLE_NOTFICATION_NEWS=8889;
     SharedPreferences ajustes=null;
+    String lastURL=null;
     SharedPreferences.Editor editorAjustes=null;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class BrowserActivity extends Activity {
             editorAjustes.putString("modelo", modelo);
             editorAjustes.putString("fechaUltimoAccesoDescargas", asignaFecha());
             editorAjustes.commit();
-            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo);
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoftMod.php?modelo=" + modelo+"");
         }
 
     }
@@ -121,8 +122,10 @@ public class BrowserActivity extends Activity {
                 } catch (Exception e) {
                     //Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
                 }
+
                 return true;
             } else if(urlDestino.lastIndexOf("appsoft") != -1){
+                lastURL=urlDestino;
                 return false;
             }else{
                 Uri uri = Uri.parse(urlDestino);
@@ -130,6 +133,7 @@ public class BrowserActivity extends Activity {
                 startActivity(intent);
                 return true;
             }
+
         }
     }
 
@@ -166,15 +170,40 @@ public class BrowserActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (urlDestino.lastIndexOf("appsoftdetails") != -1) {
+        String[] split = urlDestino.split("&");
+        String s = split[split.length - 1];
+
+        if (urlDestino.lastIndexOf("appsoftModdetails") != -1) {
             WebView descargas = (WebView) findViewById(R.id.webView1);
             descargas.setWebViewClient(new TeamForceWebViewClient());
             descargas.setDownloadListener(new TeamForceDownloadListener());
             isDownloadManagerAvailable(getBaseContext());
             Intent intent = getIntent();
             String modelo = intent.getExtras().getString("modelo");
-            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo);
-            urlDestino="http://www.androidteamforce.es/desarrollo/appsoft.php?modelo=" + modelo;
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoftMod.php?modelo=" + modelo+"&"+s);
+            urlDestino="http://www.androidteamforce.es/desarrollo/appsoftMod.php?modelo=" + modelo+"&"+s;
+            lastURL=urlDestino;
+        }else if (urlDestino.lastIndexOf("appsoftMod") != -1 & s.lastIndexOf("cid=")!=-1) {
+            WebView descargas = (WebView) findViewById(R.id.webView1);
+            descargas.setWebViewClient(new TeamForceWebViewClient());
+            descargas.setDownloadListener(new TeamForceDownloadListener());
+            isDownloadManagerAvailable(getBaseContext());
+            Intent intent = getIntent();
+            String modelo = intent.getExtras().getString("modelo");
+            descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appsoftMod.php?modelo=" + modelo);
+            urlDestino="http://www.androidteamforce.es/desarrollo/appsoftMod.php?modelo=" + modelo;
+            lastURL=urlDestino;
+        }else if(lastURL!=null && (lastURL.lastIndexOf("lid=")!=-1||lastURL.lastIndexOf("cid=")!=-1)) {
+            WebView descargas = (WebView) findViewById(R.id.webView1);
+            descargas.setWebViewClient(new TeamForceWebViewClient());
+            descargas.setDownloadListener(new TeamForceDownloadListener());
+            isDownloadManagerAvailable(getBaseContext());
+            Intent intent = getIntent();
+            String modelo = intent.getExtras().getString("modelo");
+            lastURL=lastURL.substring(0,lastURL.lastIndexOf("&lid="))+lastURL.substring(lastURL.lastIndexOf("&cid="),lastURL.length());
+            lastURL=lastURL.replace("appsoftModdetails.php","appsoftMod.php");
+            descargas.loadUrl(lastURL);
+            urlDestino=lastURL;
         }else{
             super.onBackPressed();
         }
