@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class AboutActivity extends Activity {
+public class AboutActivity extends Activity implements View.OnClickListener {
     Button contacto = null;
     Button visit = null;
     ImageButton imageButton = null;
@@ -20,64 +20,47 @@ public class AboutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        addListenerOnButton();
-        contacto = (Button) findViewById(R.id.button1);
-        visit = (Button) findViewById(R.id.button2);
+        findViewById(R.id.imageButtonLogo).setOnClickListener(this);
+        findViewById(R.id.imageButtonFacebook).setOnClickListener(this);
+        findViewById(R.id.imageButtonGoogle).setOnClickListener(this);
+        findViewById(R.id.imageButtonRss).setOnClickListener(this);
+        findViewById(R.id.imageButtonTwitter).setOnClickListener(this);
+        findViewById(R.id.imageButtonWeb).setOnClickListener(this);
+        findViewById(R.id.imageButtonYoutube).setOnClickListener(this);
+        findViewById(R.id.textViewFacebook).setOnClickListener(this);
+        findViewById(R.id.textViewGoogle).setOnClickListener(this);
+        findViewById(R.id.textViewRss).setOnClickListener(this);
+        findViewById(R.id.textViewTwitter).setOnClickListener(this);
+        findViewById(R.id.textViewWeb).setOnClickListener(this);
+        findViewById(R.id.textViewYoutube).setOnClickListener(this);
     }
 
-    public void addListenerOnButton() {
-        try {
-
-            imageButton = (ImageButton) findViewById(R.id.imageButton1);
-            imageButton.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View arg0) {
-
-                    Uri uri = Uri.parse("http://www.androidteamforce.es");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }
-
-            });
-
-            visit = (Button) findViewById(R.id.button2);
-            visit.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View arg0) {
-                    try {
-
-                        Uri uri = Uri.parse("http://www.androidteamforce.es/");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            });
-            contacto = (Button) findViewById(R.id.button1);
-            contacto.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View arg0) {
-                    Resources res2 = getResources();
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("message/rfc822");
-                    i.putExtra(Intent.EXTRA_EMAIL,
-                            new String[]{"jiayuteamforce@gmail.com"});
-                    i.putExtra(Intent.EXTRA_SUBJECT, res2.getString(R.string.msgSubjectInfo));
-                    i.putExtra(Intent.EXTRA_TEXT, "");
-                    try {
-
-                        startActivity(Intent.createChooser(i,
-                                res2.getString(R.string.enviarEmailBtn)));
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        Toast.makeText(getBaseContext(), getResources().getString(R.string.msgGenericError), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            });
-        } catch (Exception e) {
-            // TODO: handle exception
+    public void onClick(View view) {
+        int id=view.getId();
+        String url =null;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        if(id==R.id.imageButtonLogo){
+            url=getResources().getString(R.string.urlWeb);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonFacebook || id==R.id.textViewFacebook){
+            url=getResources().getString(R.string.urlFacebook);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonGoogle || id==R.id.textViewGoogle){
+            url=getResources().getString(R.string.urlGoogle);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonRss || id==R.id.textViewRss){
+            url=getResources().getString(R.string.urlRss);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonTwitter || id==R.id.textViewTwitter){
+            url=getResources().getString(R.string.urlTwitter);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonWeb || id==R.id.textViewWeb){
+            url=getResources().getString(R.string.urlWeb);
+            i.setData(Uri.parse(url));
+        }if(id==R.id.imageButtonYoutube || id==R.id.textViewYoutube){
+            url=getResources().getString(R.string.urlYoutube);
+            i.setData(Uri.parse(url));
         }
+        startActivity(i);
     }
 }

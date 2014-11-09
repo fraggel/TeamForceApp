@@ -69,7 +69,7 @@ public class AppActivity extends Activity implements AsyncResponse {
         }else{
             locale = new Locale(listaIdiomas[i]);
         }
-
+        modificarMargins();
         updatemostrado=false;
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -111,21 +111,12 @@ public class AppActivity extends Activity implements AsyncResponse {
             if (!f2.exists()) {
                 f2.mkdirs();
             }
-            if(noInternet){
-                setContentView(R.layout.activity_main_offline);
-                Toast.makeText(getBaseContext(),getResources().getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
-            }else{
+
                 setContentView(R.layout.activity_main);
-            }
+            modificarMargins();
 
             txtVersion=(TextView)findViewById(R.id.txtVersion);
             txtVersion.setText(getResources().getString(R.string.app_name)+" "+nversion);
-            if(!noInternet){
-                WebView descargas = (WebView) findViewById(R.id.webView);
-                WebSettings webSettings = descargas.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                descargas.loadUrl("http://www.androidteamforce.es/desarrollo/appbanner.php");
-            }
             addListenerOnButton();
             if(noInternet){
                 descargas.setEnabled(false);
@@ -223,19 +214,7 @@ public class AppActivity extends Activity implements AsyncResponse {
                 }
 
             });
-            if(noInternet){
-                imglogo=(ImageButton)findViewById(R.id.imgLogo);
-                imglogo.setOnClickListener(new View.OnClickListener() {
 
-                    public void onClick(View arg0) {
-
-                        Uri uri = Uri.parse("http://www.androidteamforce.es");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-
-                });
-            }
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.msgGenericError)+" 111", Toast.LENGTH_SHORT).show();
         }
@@ -403,5 +382,146 @@ public class AppActivity extends Activity implements AsyncResponse {
                 return super.onMenuItemSelected(featureId, item);
 
         }
+    }
+    private void modificarMargins() {
+        int dpi=getResources().getDisplayMetrics().densityDpi;
+
+        TextView t1=(TextView) findViewById(R.id.textView1);
+        Button b1=(Button) findViewById(R.id.btnDescargas);
+        Button b2=(Button) findViewById(R.id.button9);
+        Button b3=(Button) findViewById(R.id.button10);
+        Button b4=(Button) findViewById(R.id.btnAbout);
+        Button b5=(Button) findViewById(R.id.button4);
+        Button b6=(Button) findViewById(R.id.button3);
+        Button b7=(Button) findViewById(R.id.btnConfiguracion);
+        Button b8=(Button) findViewById(R.id.btnSalir);
+        int orientation = getResources().getConfiguration().orientation;
+        if(dpi>=160 && dpi<240){
+        }else if(dpi>=240 && dpi<320) {
+            if(orientation==2) {
+                t1.setPadding(300, 0, 0, 0);
+                b1.setPadding(150, 0, 0, 0);
+                b1.setCompoundDrawablePadding(80);
+                b2.setPadding(150, 0, 0, 0);
+                b2.setCompoundDrawablePadding(80);
+                b3.setPadding(150, 0, 0, 0);
+                b3.setCompoundDrawablePadding(80);
+                b4.setPadding(50, 0, 0, 0);
+                b4.setCompoundDrawablePadding(10);
+                b5.setPadding(40, 0, 0, 0);
+                b5.setCompoundDrawablePadding(10);
+                b6.setPadding(40, 0, 0, 0);
+                b6.setCompoundDrawablePadding(10);
+                b7.setPadding(50, 0, 0, 0);
+                b7.setCompoundDrawablePadding(10);
+                b8.setPadding(50, 0, 0, 0);
+                b8.setCompoundDrawablePadding(10);
+            }else{
+                t1.setPadding(120, 0, 0, 0);
+                b1.setPadding(90, 0, 0, 0);
+                b1.setCompoundDrawablePadding(50);
+                b2.setPadding(90, 0, 0, 0);
+                b2.setCompoundDrawablePadding(50);
+                b3.setPadding(90, 0, 0, 0);
+                b3.setCompoundDrawablePadding(50);
+                b4.setPadding(30, 0, 0, 0);
+                b4.setCompoundDrawablePadding(10);
+                b5.setPadding(20, 0, 0, 0);
+                b5.setCompoundDrawablePadding(10);
+                b6.setPadding(20, 0, 0, 0);
+                b6.setCompoundDrawablePadding(10);
+                b7.setPadding(30, 0, 0, 0);
+                b7.setCompoundDrawablePadding(10);
+                b8.setPadding(30, 0, 0, 0);
+                b8.setCompoundDrawablePadding(10);
+            }
+        }else if(dpi>=320 && dpi<480) {
+            if(orientation==2) {
+                t1.setPadding(500, 0, 0, 0);
+                b1.setPadding(170, 0, 0, 0);
+                b1.setCompoundDrawablePadding(200);
+                b2.setPadding(170, 0, 0, 0);
+                b2.setCompoundDrawablePadding(200);
+                b3.setPadding(170, 0, 0, 0);
+                b3.setCompoundDrawablePadding(200);
+                b4.setPadding(75, 0, 0, 0);
+                b4.setCompoundDrawablePadding(15);
+                b5.setPadding(30, 0, 0, 0);
+                b5.setCompoundDrawablePadding(15);
+                b6.setPadding(30, 0, 0, 0);
+                b6.setCompoundDrawablePadding(15);
+                b7.setPadding(75, 0, 0, 0);
+                b7.setCompoundDrawablePadding(15);
+                b8.setPadding(75, 0, 0, 0);
+                b8.setCompoundDrawablePadding(15);
+                /*b4.setPadding(250, 0, 0, 0);
+                b5.setPadding(220, 0, 0, 0);
+                b6.setPadding(200, 0, 0, 0);
+                b7.setPadding(250, 0, 0, 0);
+                b8.setPadding(205, 0, 0, 0);*/
+            }else{
+                t1.setPadding(200, 0, 0, 0);
+                b1.setPadding(100, 0, 0, 0);
+                b1.setCompoundDrawablePadding(70);
+                b2.setPadding(100, 0, 0, 0);
+                b2.setCompoundDrawablePadding(70);
+                b3.setPadding(100, 0, 0, 0);
+                b3.setCompoundDrawablePadding(70);
+                b4.setPadding(40, 0, 0, 0);
+                b4.setCompoundDrawablePadding(15);
+                b5.setPadding(30, 0, 0, 0);
+                b5.setCompoundDrawablePadding(5);
+                b6.setPadding(30, 0, 0, 0);
+                b6.setCompoundDrawablePadding(15);
+                b7.setPadding(40, 0, 0, 0);
+                b7.setCompoundDrawablePadding(15);
+                b8.setPadding(40, 0, 0, 0);
+                b8.setCompoundDrawablePadding(15);
+                //b5.setPadding(120, 0, 0, 0);
+                //b6.setPadding(115, 0, 0, 0);
+                //b7.setPadding(140, 0, 0, 0);
+                //b8.setPadding(125, 0, 0, 0);
+
+            }
+        }else if(dpi>=480 && dpi<680) {
+            if(orientation==2) {
+                t1.setPadding(550, 0, 0, 0);
+                b1.setPadding(350, 0, 0, 0);
+                b1.setCompoundDrawablePadding(250);
+                b2.setPadding(350, 0, 0, 0);
+                b2.setCompoundDrawablePadding(250);
+                b3.setPadding(350, 0, 0, 0);
+                b3.setCompoundDrawablePadding(250);
+                b4.setPadding(105, 0, 0, 0);
+                b4.setCompoundDrawablePadding(70);
+                b5.setPadding(50, 0, 0, 0);
+                b5.setCompoundDrawablePadding(70);
+                b6.setPadding(50, 0, 0, 0);
+                b6.setCompoundDrawablePadding(70);
+                b7.setPadding(105, 0, 0, 0);
+                b7.setCompoundDrawablePadding(70);
+                b8.setPadding(75, 0, 0, 0);
+                b8.setCompoundDrawablePadding(70);
+            }else{
+                t1.setPadding(290, 0, 0, 0);
+                b1.setPadding(190, 0, 0, 0);
+                b1.setCompoundDrawablePadding(100);
+                b2.setPadding(190, 0, 0, 0);
+                b2.setCompoundDrawablePadding(100);
+                b3.setPadding(190, 0, 0, 0);
+                b3.setCompoundDrawablePadding(100);
+                b4.setPadding(60, 0, 0, 0);
+                b4.setCompoundDrawablePadding(30);
+                b5.setPadding(40, 0, 0, 0);
+                b5.setCompoundDrawablePadding(15);
+                b6.setPadding(40, 0, 0, 0);
+                b6.setCompoundDrawablePadding(30);
+                b7.setPadding(60, 0, 0, 0);
+                b7.setCompoundDrawablePadding(30);
+                b8.setPadding(60, 0, 0, 0);
+                b8.setCompoundDrawablePadding(30);
+            }
+        }
+
     }
 }

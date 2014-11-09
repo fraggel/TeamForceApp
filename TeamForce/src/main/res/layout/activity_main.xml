@@ -4,6 +4,242 @@
     android:layout_height="fill_parent"
     android:scrollbars="horizontal"
     android:background="@android:color/background_dark"
+    >
+    <!--<LinearLayout
+           android:id="@+id/LinearLayout1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           tools:context=".Inicio2"
+       android:layout_alignParentLeft="true"
+       android:layout_marginLeft="0dp"
+       android:layout_alignParentTop="true"
+       android:layout_marginTop="0dp">
+
+
+    </LinearLayout>-->
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+
+        >
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="200dp"
+                android:layout_height="160dp"
+                android:contentDescription="Jiayu.es"
+                android:clickable="false"
+                android:scaleType="centerCrop"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:adjustViewBounds="false"
+                android:src="@drawable/teamlogic"
+                android:background="@android:color/transparent"
+                android:layout_weight="3"
+                android:layout_span="3"
+                />
+            <!--            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_marginTop"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"-->
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="@string/txtBienvenida"
+                style="@style/LabelTextWhite"
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:background="@drawable/aviso"
+                android:visibility="visible"
+                android:password="false"
+                />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/LabelTextBlack1480"
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:background="@android:color/black"
+                android:autoText="false"/>
+        </TableRow>
+
+        <!--<Button
+            style="@style/ButtonTextGreen"
+            android:id="@+id/envioNoExisteBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@string/enviarNoExisteBtn"
+            android:background="@drawable/btn_green" />-->
+
+        <!--<TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:background="@drawable/btn_white_border"
+                android:autoText="false"
+                style="@style/LabelTextRed"/>-->
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <Button
+                android:id="@+id/btnDescargas"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="@string/btnDescargas"
+                style="@style/LabelTextBlack1480"
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:drawableLeft="@drawable/ic_menu_database"
+                android:background="@drawable/btn_donwload"/>
+
+
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                style="@style/LabelTextBlack1480"
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:drawableLeft="@drawable/ic_menu_encrypt"
+                android:background="@drawable/btn_driversherramientas"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                style="@style/LabelTextBlack1480"
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:drawableLeft="@drawable/ic_menu_smalltiles"
+                android:background="@drawable/btn_herramroms"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnAbout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btnAbout"
+                android:background="@drawable/btn_tienda"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_menu_presentation"
+                style="@style/LabelTextBlackRight"
+                />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/foroBtn"
+                android:background="@drawable/btn_foro"
+                style="@style/LabelTextBlackRight"
+                android:drawableLeft="@drawable/ic_menu_feed"
+                android:layout_weight="1"
+                />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/visitarWebBtn"
+                android:background="@drawable/btn_videos"
+                style="@style/LabelTextBlackRight"
+                android:drawableLeft="@drawable/ic_menu_movie"
+                android:layout_weight="1"
+                />
+
+        </TableRow>
+
+        <!-- <TableLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:baselineAligned="false"
+         android:background="#ffffff">-->
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnConfiguracion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/msgConfiguracion"
+                android:background="@drawable/btn_sobre"
+                style="@style/LabelTextBlack1480"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/ic_menu_settings"
+                android:layout_weight=".5"
+                />
+
+            <!--<Button
+                android:id="@+id/btnInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                android:background="@drawable/btn_green"
+                android:visibility="gone"/>-->
+            <Button
+                android:id="@+id/btnSalir"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btnSalir"
+                style="@style/LabelTextBlack1480"
+                android:background="@drawable/btn_configuracion"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/ic_menu_cancel"
+                android:layout_weight=".5"
+                />
+
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:id="@+id/txtVersion"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/LabelTextBlackMain"
+                android:layout_span="3"
+                android:layout_weight="3"/>
+        </TableRow>
+    </TableLayout>
+</ScrollView>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="horizontal"
+    android:background="@android:color/background_dark"
     android:layout_weight="20">
 
     <LinearLayout
@@ -76,4 +312,4 @@
             style="@style/LabelTextBlack"/>
     </LinearLayout>
 
-</ScrollView>
+</ScrollView>-->

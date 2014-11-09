@@ -57,4 +57,10 @@
         <item>"ru"</item>
         <item>"zh"</item>-->
     </string-array>
+    <string name="urlWeb">http://www.tfandroid.es</string>
+    <string name="urlFacebook">https://www.facebook.com/TeamForceGroup</string>
+    <string name="urlGoogle">https://plus.google.com/u/0/101598355663549822553/posts</string>
+    <string name="urlRss">http://tfandroid.es/feed/</string>
+    <string name="urlTwitter">https://twitter.com/TeamForceGroup</string>
+    <string name="urlYoutube">http://www.youtube.com/user/TeamForceGroup</string>
 </resources>
